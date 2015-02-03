@@ -30,23 +30,21 @@ public class App extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
-    
+
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        mainView.home(req,resp);
-        mainView.showResults(req,resp,"./resources/");       
+        mainView.home(req, resp);
+        mainView.showResults(req, resp, "./resources/");
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-                
+
         try {
-            mainView.home(req,resp);
+            mainView.home(req, resp);
         } catch (Exception ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+
 }
