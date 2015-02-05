@@ -7,6 +7,7 @@ package edu.uniandes.ecos.modelo;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,13 +15,14 @@ import java.util.List;
  * @author deividosorio
  */
 public class counterLOC {
+
     // -----------------------------------------------------------------
     // Constantes
     // -----------------------------------------------------------------
     private String[] fileList;
-    private counterLOCFile[] filesLC;
+    ArrayList<counterLOCFile> filesLC = new ArrayList<counterLOCFile>();
     private String path = "";
-    private long nFiles = 0;
+    private int nFiles = 0;
     counterLOCFile cLOCf;
 
     // -----------------------------------------------------------------
@@ -30,48 +32,60 @@ public class counterLOC {
         this.path = path;
         fileList = getFilesPath();
 
-        for (int i = 0; i < fileList.length; i++) {
-            cLOCf = new counterLOCFile(fileList[i]);
-            filesLC[i] = cLOCf;
+        for (int i = 0; i <= this.nFiles; i++) {
+            if (fileList[i].endsWith(".java")) {
+                cLOCf = new counterLOCFile(this.path + fileList[i]);
+                filesLC.add(cLOCf);
+            }
         }
     }
 
     private String[] getFilesPath() {
         File dir = new File(this.path);
-        String[] files = dir.list();
-        this.nFiles = dir.length();
-        return files;
+        fileList = dir.list();
+        this.nFiles = fileList.length;
+        return fileList;
     }
-    
-    public counterLOCFile[] getFiles(){
+
+    public ArrayList<counterLOCFile> getFiles() {
         return this.filesLC;
     }
-    
-    public long getNumTotLOC(){
+
+    public long getNumTotLOC() {
         long numTotLOC = 0;
-        for (int i = 0; i < this.filesLC.length; i++){
+        for (int i = 0; i < this.filesLC.size(); i++) {
             numTotLOC++;
         }
         return numTotLOC;
     }
+
+    public long getNumTotMethods() {
+        long numTotMethod = 0;
+        for (int i = 0; i < this.filesLC.size(); i++) {
+            numTotMethod++;
+        }
+        return numTotMethod;
+    }
     
-    public long getNumTotLEmpty(){
+    public long getNumTotLEmpty() {
         long numTotLEmpty = 0;
-        for (int i = 0; i < this.filesLC.length; i++){
+        for (int i = 0; i < this.filesLC.size(); i++) {
             numTotLEmpty++;
         }
         return numTotLEmpty;
     }
 
-    public long getNumTotLComment(){
+    public long getNumTotLComment() {
         long getNumTotLComment = 0;
-        for (int i = 0; i < this.filesLC.length; i++){
+        for (int i = 0; i < this.filesLC.size(); i++) {
             getNumTotLComment++;
         }
         return getNumTotLComment;
     }
-    
-    public long getNumTotFiles(){
+
+    public long getNumTotFiles() {
         return this.nFiles;
     }
+  
+  
 }

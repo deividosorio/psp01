@@ -13,8 +13,8 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.server.Server;
 
 /**
- * Clase vista de visualización
- *
+ * Clase vista de visualización que se encarga que hacer 
+ * la orquestación entre el mundo y la vista
  */
 public class App extends HttpServlet {
 
@@ -32,16 +32,29 @@ public class App extends HttpServlet {
         }
     }
 
+    /**
+     * Método doGet para llamar la vista con la dirección donde está el 
+     * archivo y los archivos del código fuente a contar
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException 
+     */
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        mainView.home(req, resp);
-        mainView.showResults(req, resp, "./resources/");
+        
+        try{
+            mainView.home(req, resp, "resources/");
+        }catch (Exception e) {
+            System.out.println("Error de null " + e.getMessage());
+        }
+
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         try {
-            mainView.home(req, resp);
+            mainView.home(req, resp, "resources/");
         } catch (Exception ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
