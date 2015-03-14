@@ -22,10 +22,10 @@ public class appConsola {
 
             System.out.println("SUMMARY");
             System.out.println("Número de archivos en directorio: " + cLF.getNumTotFiles());
-            System.out.println("Número de líneas de código: " + cLF.getNumTotLOC());
-            System.out.println("Número de líneas de comentario: " + cLF.getNumTotLComment());
-            System.out.println("Número de líneas en blanco: " + cLF.getNumTotLEmpty());
-            System.out.println("Número de métodos: " + cLF.getNumTotMethods());
+            System.out.println("Número total de líneas de código: " + cLF.getNumTotLOC());
+            System.out.println("Número total de líneas de comentario: " + cLF.getNumTotLComment());
+            System.out.println("Número total de líneas en blanco: " + cLF.getNumTotLEmpty());
+            System.out.println("Número total de métodos: " + cLF.getNumTotMethods());
             System.out.println("\n");
             System.out.println("METHODS");
             cLOCf = cLF.getFiles();

@@ -44,9 +44,9 @@ public class App extends HttpServlet {
             throws ServletException, IOException {
         
         try{
-            mainView.home(req, resp, "resources/");
+            mainView.home(req, resp, "./src/main/resources/");
         }catch (Exception e) {
-            System.out.println("Error de null " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
 
     }
