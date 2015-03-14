@@ -32,7 +32,7 @@ public class counterLOC {
         this.path = path;
         fileList = getFilesPath();
 
-        for (int i = 0; i <= this.nFiles; i++) {
+        for (int i = 0; i < this.nFiles; i++) {
             if (fileList[i].endsWith(".java")) {
                 cLOCf = new counterLOCFile(this.path + fileList[i]);
                 filesLC.add(cLOCf);
@@ -53,32 +53,40 @@ public class counterLOC {
 
     public long getNumTotLOC() {
         long numTotLOC = 0;
+        counterLOCFile counter;
         for (int i = 0; i < this.filesLC.size(); i++) {
-            numTotLOC++;
+            counter = filesLC.get(i);
+            numTotLOC+= counter.getNumLOC();
         }
         return numTotLOC;
     }
 
     public long getNumTotMethods() {
         long numTotMethod = 0;
+        counterLOCFile counter;
         for (int i = 0; i < this.filesLC.size(); i++) {
-            numTotMethod++;
+            counter = filesLC.get(i);
+            numTotMethod+= counter.getNumMethods();
         }
         return numTotMethod;
     }
     
     public long getNumTotLEmpty() {
         long numTotLEmpty = 0;
+        counterLOCFile counter;
         for (int i = 0; i < this.filesLC.size(); i++) {
-            numTotLEmpty++;
+            counter = filesLC.get(i);
+            numTotLEmpty+= counter.getNumEmpty();
         }
         return numTotLEmpty;
     }
 
     public long getNumTotLComment() {
         long getNumTotLComment = 0;
+        counterLOCFile counter;
         for (int i = 0; i < this.filesLC.size(); i++) {
-            getNumTotLComment++;
+            counter = filesLC.get(i);
+            getNumTotLComment+= counter.getNumCommet();
         }
         return getNumTotLComment;
     }
@@ -86,6 +94,4 @@ public class counterLOC {
     public long getNumTotFiles() {
         return this.nFiles;
     }
-  
-  
 }

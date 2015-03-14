@@ -9,6 +9,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -24,14 +26,12 @@ public class counterLOCFile {
     private int nlcomment = 0;
     private int nmethod = 0;
     private String nameFile = "";
-    private String nameMethod = "";
 
     // -----------------------------------------------------------------
     // Constructores
     // -----------------------------------------------------------------
     public counterLOCFile(String nameFile) {
         this.nameFile = nameFile;
-
         String line = "";
 
         try {
@@ -41,13 +41,13 @@ public class counterLOCFile {
             while ((line = bf.readLine()) != null) {
                 if (line.length() == 0) {
                     this.nlempty++;
-                } else if (line.startsWith("//") || line.startsWith("*")
-                        || line.startsWith("/*") || line.startsWith("*/")) {
+                } else if (line.contains("//") || line.contains(" *")
+                        || line.contains("/*") || line.contains("*/") || line.contains("/**")) {
                     this.nlcomment++;
-                } else if (line.startsWith("Private") || line.startsWith("Public")
-                        || line.startsWith("Protected")) {
+                } else if (line.contains("private") || line.contains("public")
+                        || line.contains("protected")) {
                     this.nmethod++;
-                    this.nameMethod = line;
+                    this.nloc++;
                 } else {
                     this.nloc++;
                 }
@@ -57,10 +57,6 @@ public class counterLOCFile {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-    }
-
-    public String getNameMethod() {
-        return this.nameMethod;
     }
 
     public int getNumLOC() {
@@ -74,9 +70,12 @@ public class counterLOCFile {
     public int getNumCommet() {
         return this.nlcomment;
     }
+    
+    public int getNumMethods() {
+        return this.nmethod;
+    }
 
     public String getNameFile() {
         return this.nameFile;
     }
-
 }
