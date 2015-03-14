@@ -45,7 +45,7 @@ public class mainView {
 
         for (int i = 0; i < cLOCf.size(); i++) {
             method = cLOCf.get(i);
-            pw.println("\n");
+            pw.println("<pr>");
             pw.println("<b>Nombre de Archivo:</b> " + method.getNameFile() + "<br> ");
             pw.println("<b>Número de Méthodos del archivo:</b> " + method.getNumMethods() + "<br> ");
             pw.println("<b>Número de LOC del archivo:</b> " + method.getNumLOC() + "<br> ");
